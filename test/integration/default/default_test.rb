@@ -4,13 +4,26 @@
 # found at https://www.inspec.io/docs/reference/resources/
 
 unless os.windows?
-  # This is an example test, replace with your own test.
-  describe user('root'), :skip do
+  describe user('cidare-user') do
     it { should exist }
   end
-end
 
-# This is an example test, replace it with your own test.
-describe port(80), :skip do
-  it { should_not be_listening }
+  describe directory('/home/cidare-user') do
+    it { should exist }
+  end
+
+  describe directory('/home/cidare-user/.ssh') do
+    it { should exist }
+    its('mode') { should cmp '0700' }
+  end
+
+  describe file('/home/cidare-user/.ssh/authorized_keys') do
+    it { should exist }
+  end
+
+  describe file('/etc/sudoers.d/cidare-user') do
+    it { should exist }
+    its('mode') { should cmp '0440' }
+  end
+
 end
