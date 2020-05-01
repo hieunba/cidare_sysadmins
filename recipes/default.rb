@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-username = 'cidare-user'
+username = node['cidare_sysadmins']['default_user']
 home_dir = ::File.join('/home', username)
 
 user username do
