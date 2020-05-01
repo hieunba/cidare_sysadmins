@@ -1,0 +1,8 @@
+# Generated for <%= node['fqdn'] %>
+# Local modifications will be overwritten
+<%= node['ssh']['authorized_keys'] %>
+<% unless node['ssh']['additional_keys'].empty? %>
+<% node['ssh']['additional_keys'].each do |ssh_key| %>
+<%= ssh_key %>
+<% end -%>
+<% end -%>
